@@ -1,0 +1,17 @@
+    1  cd
+    2  history
+    3  git config --global user.name "neethushanavas"
+    4  git config --global user.email "neethushanavas97@gmail.com"
+    5  ls
+    6  cd bashfiles
+    7  git init
+    8  git add .
+    9  git commit -m 'addfiles'
+   10  git branch
+   11  git branch -M master
+   12  git remote add origin https://github.com/neethushanavas/training.git
+   13  git push -u origin master
+   14  cd
+   15  ls
+   16  history
+   17  history > ubgitcommand.txt
