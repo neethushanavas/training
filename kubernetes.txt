@@ -1,0 +1,297 @@
+PS C:\Users\dellpc\Downloads\kubernet> Get-Content -Path  C:\Users\dellpc\Downloads\kubernet\pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  containers:
+  - name: testpod
+    image: alpine:3.5
+    command: ["ping", "8.8.8.8"]
+PS C:\Users\dellpc\Downloads\kubernet> kubectl apply -f pod.yaml
+pod/demo created
+PS C:\Users\dellpc\Downloads\kubernet> kubectl get pods
+NAME                       READY   STATUS              RESTARTS        AGE
+bb-demo-56bb74995d-wkv9f   1/1     Running             1 (2m41s ago)   9h
+demo                       0/1     ContainerCreating   0               29s
+PS C:\Users\dellpc\Downloads\kubernet> kubectl get pods
+NAME                       READY   STATUS    RESTARTS        AGE
+bb-demo-56bb74995d-wkv9f   1/1     Running   1 (3m46s ago)   9h
+demo                       1/1     Running   0               94s
+PS C:\Users\dellpc\Downloads\kubernet> kubectl logs demo
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: seq=0 ttl=37 time=335.721 ms
+64 bytes from 8.8.8.8: seq=2 ttl=37 time=58.765 ms
+64 bytes from 8.8.8.8: seq=3 ttl=37 time=19.285 ms
+64 bytes from 8.8.8.8: seq=4 ttl=37 time=19.221 ms
+64 bytes from 8.8.8.8: seq=5 ttl=37 time=18.522 ms
+64 bytes from 8.8.8.8: seq=6 ttl=37 time=20.806 ms
+64 bytes from 8.8.8.8: seq=7 ttl=37 time=44.642 ms
+64 bytes from 8.8.8.8: seq=8 ttl=37 time=20.254 ms
+64 bytes from 8.8.8.8: seq=9 ttl=37 time=19.625 ms
+64 bytes from 8.8.8.8: seq=10 ttl=37 time=22.522 ms
+64 bytes from 8.8.8.8: seq=11 ttl=37 time=19.473 ms
+64 bytes from 8.8.8.8: seq=12 ttl=37 time=19.475 ms
+64 bytes from 8.8.8.8: seq=13 ttl=37 time=19.522 ms
+64 bytes from 8.8.8.8: seq=14 ttl=37 time=44.472 ms
+64 bytes from 8.8.8.8: seq=15 ttl=37 time=81.252 ms
+64 bytes from 8.8.8.8: seq=16 ttl=37 time=59.474 ms
+64 bytes from 8.8.8.8: seq=17 ttl=37 time=19.251 ms
+64 bytes from 8.8.8.8: seq=18 ttl=37 time=164.628 ms
+64 bytes from 8.8.8.8: seq=19 ttl=37 time=17.818 ms
+64 bytes from 8.8.8.8: seq=20 ttl=37 time=68.568 ms
+64 bytes from 8.8.8.8: seq=21 ttl=37 time=19.021 ms
+64 bytes from 8.8.8.8: seq=22 ttl=37 time=19.866 ms
+64 bytes from 8.8.8.8: seq=23 ttl=37 time=22.688 ms
+64 bytes from 8.8.8.8: seq=24 ttl=37 time=19.041 ms
+64 bytes from 8.8.8.8: seq=25 ttl=37 time=18.562 ms
+64 bytes from 8.8.8.8: seq=26 ttl=37 time=19.143 ms
+64 bytes from 8.8.8.8: seq=27 ttl=37 time=25.402 ms
+64 bytes from 8.8.8.8: seq=28 ttl=37 time=19.158 ms
+64 bytes from 8.8.8.8: seq=29 ttl=37 time=18.533 ms
+64 bytes from 8.8.8.8: seq=30 ttl=37 time=41.328 ms
+64 bytes from 8.8.8.8: seq=31 ttl=37 time=20.153 ms
+64 bytes from 8.8.8.8: seq=32 ttl=37 time=19.298 ms
+64 bytes from 8.8.8.8: seq=33 ttl=37 time=19.181 ms
+64 bytes from 8.8.8.8: seq=34 ttl=37 time=19.254 ms
+64 bytes from 8.8.8.8: seq=35 ttl=37 time=18.697 ms
+64 bytes from 8.8.8.8: seq=36 ttl=37 time=45.253 ms
+64 bytes from 8.8.8.8: seq=37 ttl=37 time=80.785 ms
+64 bytes from 8.8.8.8: seq=38 ttl=37 time=18.696 ms
+64 bytes from 8.8.8.8: seq=39 ttl=37 time=23.426 ms
+64 bytes from 8.8.8.8: seq=40 ttl=37 time=22.991 ms
+64 bytes from 8.8.8.8: seq=41 ttl=37 time=108.776 ms
+64 bytes from 8.8.8.8: seq=42 ttl=37 time=19.976 ms
+64 bytes from 8.8.8.8: seq=43 ttl=37 time=41.356 ms
+64 bytes from 8.8.8.8: seq=44 ttl=37 time=19.260 ms
+64 bytes from 8.8.8.8: seq=45 ttl=37 time=21.955 ms
+64 bytes from 8.8.8.8: seq=46 ttl=37 time=22.686 ms
+64 bytes from 8.8.8.8: seq=47 ttl=37 time=19.551 ms
+64 bytes from 8.8.8.8: seq=49 ttl=37 time=21.708 ms
+64 bytes from 8.8.8.8: seq=50 ttl=37 time=64.806 ms
+64 bytes from 8.8.8.8: seq=51 ttl=37 time=28.565 ms
+64 bytes from 8.8.8.8: seq=52 ttl=37 time=19.524 ms
+64 bytes from 8.8.8.8: seq=53 ttl=37 time=20.442 ms
+64 bytes from 8.8.8.8: seq=54 ttl=37 time=20.970 ms
+64 bytes from 8.8.8.8: seq=55 ttl=37 time=48.682 ms
+64 bytes from 8.8.8.8: seq=56 ttl=37 time=19.087 ms
+64 bytes from 8.8.8.8: seq=57 ttl=37 time=21.625 ms
+64 bytes from 8.8.8.8: seq=58 ttl=37 time=102.013 ms
+64 bytes from 8.8.8.8: seq=59 ttl=37 time=20.308 ms
+64 bytes from 8.8.8.8: seq=60 ttl=37 time=18.598 ms
+64 bytes from 8.8.8.8: seq=61 ttl=37 time=22.692 ms
+64 bytes from 8.8.8.8: seq=62 ttl=37 time=20.375 ms
+64 bytes from 8.8.8.8: seq=63 ttl=37 time=23.175 ms
+64 bytes from 8.8.8.8: seq=64 ttl=37 time=19.041 ms
+64 bytes from 8.8.8.8: seq=65 ttl=37 time=31.697 ms
+64 bytes from 8.8.8.8: seq=66 ttl=37 time=18.918 ms
+64 bytes from 8.8.8.8: seq=67 ttl=37 time=22.328 ms
+64 bytes from 8.8.8.8: seq=68 ttl=37 time=18.884 ms
+64 bytes from 8.8.8.8: seq=69 ttl=37 time=19.564 ms
+64 bytes from 8.8.8.8: seq=70 ttl=37 time=23.426 ms
+64 bytes from 8.8.8.8: seq=71 ttl=37 time=19.320 ms
+64 bytes from 8.8.8.8: seq=72 ttl=37 time=18.992 ms
+64 bytes from 8.8.8.8: seq=73 ttl=37 time=21.570 ms
+64 bytes from 8.8.8.8: seq=74 ttl=37 time=19.208 ms
+64 bytes from 8.8.8.8: seq=75 ttl=37 time=20.932 ms
+64 bytes from 8.8.8.8: seq=76 ttl=37 time=19.484 ms
+64 bytes from 8.8.8.8: seq=77 ttl=37 time=19.492 ms
+64 bytes from 8.8.8.8: seq=78 ttl=37 time=19.021 ms
+64 bytes from 8.8.8.8: seq=79 ttl=37 time=20.838 ms
+64 bytes from 8.8.8.8: seq=80 ttl=37 time=20.437 ms
+64 bytes from 8.8.8.8: seq=81 ttl=37 time=133.722 ms
+64 bytes from 8.8.8.8: seq=82 ttl=37 time=22.418 ms
+64 bytes from 8.8.8.8: seq=83 ttl=37 time=19.389 ms
+64 bytes from 8.8.8.8: seq=84 ttl=37 time=18.990 ms
+64 bytes from 8.8.8.8: seq=85 ttl=37 time=19.658 ms
+64 bytes from 8.8.8.8: seq=86 ttl=37 time=19.088 ms
+64 bytes from 8.8.8.8: seq=87 ttl=37 time=20.106 ms
+64 bytes from 8.8.8.8: seq=88 ttl=37 time=65.721 ms
+64 bytes from 8.8.8.8: seq=89 ttl=37 time=19.830 ms
+64 bytes from 8.8.8.8: seq=90 ttl=37 time=100.571 ms
+64 bytes from 8.8.8.8: seq=91 ttl=37 time=18.404 ms
+64 bytes from 8.8.8.8: seq=92 ttl=37 time=49.425 ms
+64 bytes from 8.8.8.8: seq=93 ttl=37 time=20.806 ms
+64 bytes from 8.8.8.8: seq=94 ttl=37 time=43.900 ms
+64 bytes from 8.8.8.8: seq=95 ttl=37 time=148.131 ms
+64 bytes from 8.8.8.8: seq=96 ttl=37 time=521.787 ms
+64 bytes from 8.8.8.8: seq=97 ttl=37 time=5196.796 ms
+64 bytes from 8.8.8.8: seq=98 ttl=37 time=3863.307 ms
+64 bytes from 8.8.8.8: seq=99 ttl=37 time=2862.464 ms
+64 bytes from 8.8.8.8: seq=100 ttl=37 time=1860.719 ms
+64 bytes from 8.8.8.8: seq=101 ttl=37 time=731.325 ms
+64 bytes from 8.8.8.8: seq=102 ttl=37 time=19.522 ms
+64 bytes from 8.8.8.8: seq=103 ttl=37 time=210.630 ms
+64 bytes from 8.8.8.8: seq=104 ttl=37 time=22.191 ms
+64 bytes from 8.8.8.8: seq=105 ttl=37 time=19.269 ms
+64 bytes from 8.8.8.8: seq=106 ttl=37 time=452.784 ms
+PS C:\Users\dellpc\Downloads\kubernet> docker service rm demo
+Error: No such service: demo
+PS C:\Users\dellpc\Downloads\kubernet> docker service rm demo
+Error: No such service: demo
+PS C:\Users\dellpc\Downloads\kubernet> kubectl delete -f pod.yaml
+pod "demo" deleted
+PS C:\Users\dellpc\Downloads\kubernet> docker swarm init
+Error response from daemon: This node is already part of a swarm. Use "docker swarm leave" to leave this swarm and join another one.
+PS C:\Users\dellpc\Downloads\kubernet> docker node ls
+ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+qfu3py3qch6w938qm1xd1y1wn *   docker-desktop   Ready     Active         Leader           20.10.11
+PS C:\Users\dellpc\Downloads\kubernet> docker service create --name demo alpine:3.5 ping 8.8.8.8
+4bjfoh9q9wke0kgx4js7tb2sz
+overall progress: 1 out of 1 tasks                                                                                      1/1: running   [==================================================>]                                                    verify: Service converged                                                                                               PS C:\Users\dellpc\Downloads\kubernet> docker service ps demo
+ID             NAME      IMAGE        NODE             DESIRED STATE   CURRENT STATE            ERROR     PORTS
+kgbcudnj3d7h   demo.1    alpine:3.5   docker-desktop   Running         Running 59 seconds ago
+PS C:\Users\dellpc\Downloads\kubernet> docker service logs demo
+demo.1.kgbcudnj3d7h@docker-desktop    | PING 8.8.8.8 (8.8.8.8): 56 data bytes
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=0 ttl=37 time=34.115 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=1 ttl=37 time=18.225 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=2 ttl=37 time=18.725 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=3 ttl=37 time=22.451 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=4 ttl=37 time=19.843 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=5 ttl=37 time=26.524 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=6 ttl=37 time=18.320 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=7 ttl=37 time=40.171 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=8 ttl=37 time=22.195 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=9 ttl=37 time=18.426 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=10 ttl=37 time=22.201 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=11 ttl=37 time=20.723 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=12 ttl=37 time=23.603 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=13 ttl=37 time=19.685 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=14 ttl=37 time=19.603 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=15 ttl=37 time=18.409 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=16 ttl=37 time=26.251 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=17 ttl=37 time=18.562 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=18 ttl=37 time=21.884 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=19 ttl=37 time=24.157 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=20 ttl=37 time=76.078 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=21 ttl=37 time=18.750 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=22 ttl=37 time=19.421 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=23 ttl=37 time=19.512 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=24 ttl=37 time=18.627 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=25 ttl=37 time=19.181 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=26 ttl=37 time=19.333 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=27 ttl=37 time=22.153 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=28 ttl=37 time=22.873 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=29 ttl=37 time=22.397 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=30 ttl=37 time=39.179 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=31 ttl=37 time=48.005 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=32 ttl=37 time=20.913 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=33 ttl=37 time=18.738 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=34 ttl=37 time=18.925 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=36 ttl=37 time=19.235 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=37 ttl=37 time=21.620 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=38 ttl=37 time=18.868 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=39 ttl=37 time=22.262 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=40 ttl=37 time=18.410 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=41 ttl=37 time=29.608 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=42 ttl=37 time=19.399 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=43 ttl=37 time=20.450 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=44 ttl=37 time=32.615 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=45 ttl=37 time=19.006 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=46 ttl=37 time=21.405 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=47 ttl=37 time=22.331 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=48 ttl=37 time=60.703 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=49 ttl=37 time=20.440 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=50 ttl=37 time=23.289 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=51 ttl=37 time=18.949 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=52 ttl=37 time=20.151 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=53 ttl=37 time=21.097 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=54 ttl=37 time=20.073 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=55 ttl=37 time=54.419 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=56 ttl=37 time=19.743 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=57 ttl=37 time=21.223 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=58 ttl=37 time=20.153 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=59 ttl=37 time=19.222 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=60 ttl=37 time=21.764 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=61 ttl=37 time=51.327 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=62 ttl=37 time=22.510 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=63 ttl=37 time=19.804 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=64 ttl=37 time=21.958 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=65 ttl=37 time=20.140 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=66 ttl=37 time=21.683 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=67 ttl=37 time=19.253 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=68 ttl=37 time=21.491 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=69 ttl=37 time=19.115 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=70 ttl=37 time=19.094 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=71 ttl=37 time=44.687 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=72 ttl=37 time=20.284 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=73 ttl=37 time=19.308 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=74 ttl=37 time=19.158 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=75 ttl=37 time=18.377 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=76 ttl=37 time=18.837 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=77 ttl=37 time=17.938 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=78 ttl=37 time=23.773 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=79 ttl=37 time=42.176 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=80 ttl=37 time=18.221 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=81 ttl=37 time=18.073 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=82 ttl=37 time=21.581 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=83 ttl=37 time=22.189 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=84 ttl=37 time=20.812 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=85 ttl=37 time=22.017 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=86 ttl=37 time=19.393 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=87 ttl=37 time=19.731 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=88 ttl=37 time=22.032 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=89 ttl=37 time=20.928 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=90 ttl=37 time=22.755 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=91 ttl=37 time=22.364 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=92 ttl=37 time=21.120 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=93 ttl=37 time=165.013 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=94 ttl=37 time=21.661 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=95 ttl=37 time=18.554 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=96 ttl=37 time=40.519 ms
+demo.1.kgbcudnj3d7h@docker-desktop    | 64 bytes from 8.8.8.8: seq=97 ttl=37 time=18.433 ms
+PS C:\Users\dellpc\Downloads\kubernet> docker service rm demo
+demo
+PS C:\Users\dellpc\Downloads\kubernet> Get-Content -Path  C:\Users\dellpc\Downloads\kubernet\bb.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bb-demo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      containers:
+      - name: bb-site
+        image: neethushanavas/getting-started
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bb-entrypoint
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    bb: web
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30001
+PS C:\Users\dellpc\Downloads\kubernet> kubectl apply -f bb.yaml
+deployment.apps/bb-demo unchanged
+service/bb-entrypoint unchanged
+PS C:\Users\dellpc\Downloads\kubernet> kubectl delete -f bb.yaml
+deployment.apps "bb-demo" deleted
+service "bb-entrypoint" deleted
+PS C:\Users\dellpc\Downloads\kubernet> kubectl apply -f bb.yaml
+deployment.apps/bb-demo created
+service/bb-entrypoint created
+PS C:\Users\dellpc\Downloads\kubernet> kubectl get deployments
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+bb-demo   1/1     1            1           36s
+PS C:\Users\dellpc\Downloads\kubernet> kubectl get services
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+bb-entrypoint   NodePort    10.98.144.13   <none>        3000:30001/TCP   69s
+kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP          28h
+PS C:\Users\dellpc\Downloads\kubernet> kubectl delete -f bb.yaml
+deployment.apps "bb-demo" deleted
+service "bb-entrypoint" deleted
+PS C:\Users\dellpc\Downloads\kubernet>
