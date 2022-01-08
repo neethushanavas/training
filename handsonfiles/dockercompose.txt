@@ -1,0 +1,45 @@
+PS C:\Users\dellpc\Downloads\getting-started-master> cd app
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker run -dp 3000:3000 `
+>> -w /app -v "$(pwd):/app" `
+>> --network todo-app `
+>> -e MYSQL_HOST=mysql `
+>> -e MYSQL_USER=root `
+>> -e MYSQL_PASSWORD=secret `
+>> -e MYSQL_DB=todos `
+>> node:12-alpine `
+>> sh -c "yarn install && yarn run dev"
+f6659179a7e39e8d74d7f5a06539486d0cbd872857bd2452f416ffcb3a351d79
+
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker run -d `
+>> --network todo-app --network-alias mysql `
+>>  -v todo-mysql-data:/var/lib/mysql `
+>> -e MYSQL_ROOT_PASSWORD=secret `
+>> -e MYSQL_DATABASE=todos `
+>>  mysql:5.7
+a86aa9cb22141096416f6ae6ef3e763f509ca4e18c51a3f9c7d81ac158053af9
+
+PS C:\Users\dellpc\Downloads\getting-started-master\app>  docker-compose up -d
+[+] Running 3/4
+ - Network app_default           Created                                                                           2.6s
+ - Volume "app_todo-mysql-data"  Created                                                                           0.3s
+ - Container app_app_1           Starting                                                                         46.7s
+ - Container app_mysql_1         Started
+
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker compose logs -f
+.................................................................................................
+app_1    | Connected!
+mysql_1  | 2022-01-08T08:21:38.938848Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+mysql_1  | 2022-01-08T08:21:39.162647Z 0 [Note] Event Scheduler: Loaded 0 events
+mysql_1  | 2022-01-08T08:21:39.169533Z 0 [Note] mysqld: ready for connections.
+mysql_1  | Version: '5.7.36'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+mysql_1  | 2022-01-08T08:21:39.177966Z 2 [Note] Got an error reading communication packets
+app_1    | Connected to mysql db at host mysql
+app_1    | Listening on port 3000
+
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker-compose down                                                          8.1s
+ - Container app_app_1    Removed                                                                                  5.3s
+[+] Running 1/2ected to mysql db at host mysql
+ - Container app_mysql_1  Stopping                                                                                 7.6s
+ - Container app_app_1    Removed                                                                                  5.3s
+ - Container app_mysql_1  Stopping                                                                                 6.9s
+ - Container app_app_1    Removed                                                                                  5.3s
