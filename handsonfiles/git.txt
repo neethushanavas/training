@@ -1,0 +1,58 @@
+PS C:\Users\dellpc\Desktop> cd gitexample
+PS C:\Users\dellpc\Desktop\gitexample> git init
+Initialized empty Git repository in C:/Users/dellpc/Desktop/gitexample/.git/
+PS C:\Users\dellpc\Desktop\gitexample> git add .
+PS C:\Users\dellpc\Desktop\gitexample> git commit -m 'newchange'
+[master (root-commit) 5f52c42] newchange
+ 1 file changed, 1 insertion(+)
+ create mode 100644 New Text Document.txt
+PS C:\Users\dellpc\Desktop\gitexample> git branch
+* master
+PS C:\Users\dellpc\Desktop\gitexample> git branch mynewbranch                                                           PS C:\Users\dellpc\Desktop\gitexample> git branch
+* master
+  mynewbranch
+PS C:\Users\dellpc\Desktop\gitexample> git checkout mynewbranch                                                         Switched to branch 'mynewbranch'
+PS C:\Users\dellpc\Desktop\gitexample> git add .
+PS C:\Users\dellpc\Desktop\gitexample> git commit -m 'change'
+[mynewbranch b2cda41] change
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\dellpc\Desktop\gitexample> git checkout master
+Switched to branch 'master'
+PS C:\Users\dellpc\Desktop\gitexample> git merge mynewbranch
+Updating 5f52c42..b2cda41
+Fast-forward
+ New Text Document.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+PS C:\Users\dellpc\Desktop\gitexample> git branch
+* master
+  mynewbranch
+PS C:\Users\dellpc\Desktop\gitexample> git status                                                                       On branch master
+nothing to commit, working tree clean
+
+PS C:\Users\dellpc\Desktop\gitexample> git add .
+PS C:\Users\dellpc\Desktop\gitexample> git commit -m 'neww'
+[master 0c1f66b] neww
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+PS C:\Users\dellpc\Desktop\gitexample> git add .
+PS C:\Users\dellpc\Desktop\gitexample> git commit --amend -m 'neww'
+[master 3eda5df] neww
+ Date: Sat Jan 8 14:19:36 2022 +0530
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+PS C:\Users\dellpc\Desktop\gitexample> git clone https://github.com/usha-mandya/SimpleWhaleDemo
+Cloning into 'SimpleWhaleDemo'...
+remote: Enumerating objects: 178, done.
+remote: Counting objects: 100% (26/26), done.
+remote: Compressing objects: 100% (7/7), done.
+Rremote: Total 178 (delta 19), reused 19 (delta 19), pack-reused 152
+Receiving objects: 100% (178/178), 119.21 KiB | 443.00 KiB/s, done.
+Resolving deltas: 100% (44/44), done.
+
+PS C:\Users\dellpc\Desktop\gitexample> cd SimpleWhaleDemo
+PS C:\Users\dellpc\Desktop\gitexample\SimpleWhaleDemo> git remote
+origin
+
+PS C:\Users\dellpc\Desktop\gitexample\SimpleWhaleDemo> git remote -v
+origin  https://github.com/usha-mandya/SimpleWhaleDemo (fetch)
+origin  https://github.com/usha-mandya/SimpleWhaleDemo (push)
+
