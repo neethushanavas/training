@@ -1,0 +1,118 @@
+PS C:\Users\dellpc\Downloads\getting-started-master> cd app
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker network create todo-app
+Error response from daemon: network with name todo-app already exists
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker run -d `
+>> --network todo-app --network-alias mysql `
+>> -v todo-mysql-data:/var/lib/mysql `
+>> -e MYSQL_ROOT_PASSWORD=secret `
+>> -e MYSQL_DATABASE=todos `
+>> mysql:5.7
+66238753e4f572b8595985cb03fd0d6b3c8422f1c93add34fff20f70bf97a25f
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                 NAMES
+66238753e4f5   mysql:5.7   "docker-entrypoint.s…"   30 seconds ago   Up 18 seconds   3306/tcp, 33060/tcp   charming_neumann
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker exec -it 66238753e4f5 mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.36 MySQL Community Server (GPL)
+
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| todos              |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker run -it --network todo-app nicolaka/netshoot
+                    dP            dP                           dP   
+                    88            88                           88
+88d888b. .d8888b. d8888P .d8888b. 88d888b. .d8888b. .d8888b. d8888P
+88'  `88 88ooood8   88   Y8ooooo. 88'  `88 88'  `88 88'  `88   88
+88    88 88.  ...   88         88 88    88 88.  .88 88.  .88   88
+dP    dP `88888P'   dP   `88888P' dP    dP `88888P' `88888P'   dP
+
+Welcome to Netshoot! (github.com/nicolaka/netshoot)
+
+
+
+
+ 2a519cf41472  ~  dig mysql
+
+; <<>> DiG 9.16.22 <<>> mysql
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 10703
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;mysql.                         IN      A
+
+;; ANSWER SECTION:
+mysql.                  600     IN      A       172.18.0.2
+
+;; Query time: 580 msec
+;; SERVER: 127.0.0.11#53(127.0.0.11)
+;; WHEN: Sat Jan 08 07:06:27 UTC 2022
+;; MSG SIZE  rcvd: 44
+
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker run -dp 3000:3000 `
+>> -w /app -v "$(pwd):/app" `
+>> --network todo-app `
+>> -e MYSQL_HOST=mysql `
+>> -e MYSQL_USER=root `
+>> -e MYSQL_PASSWORD=secret `
+>> -e MYSQL_DB=todos `
+>> node:12-alpine `
+>> sh -c "yarn install && yarn run dev"
+d5e1b6d8977bb00b3905d02873925f041147daa2785ff9ffcd51aa703ce27262
+
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker ps
+CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS              PORTS                    NAMES
+d5e1b6d8977b   node:12-alpine      "docker-entrypoint.s…"   2 minutes ago    Up About a minute   0.0.0.0:3000->3000/tcp   focused_lamport
+2a519cf41472   nicolaka/netshoot   "zsh"                    15 minutes ago   Up 13 minutes                                zealous_cannon
+66238753e4f5   mysql:5.7           "docker-entrypoint.s…"   17 minutes ago   Up 17 minutes       3306/tcp, 33060/tcp      charming_neumann
+
+PS C:\Users\dellpc\Downloads\getting-started-master\app> docker exec -it 66238753e4f5 mysql -p todos
+Enter password: 
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.36 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select * from todo_items;
++--------------------------------------+--------+-----------+
+| id                                   | name   | completed |
++--------------------------------------+--------+-----------+
+| cfdb07a6-bcc8-4bf5-b411-750c25d75a79 | devops |         1 |
+| 7b481a9d-cd1d-4710-933f-18fb4ad2796f | python |         0 |
+| ea404635-e021-46ef-aad5-990ece0ef9f0 | docker |         0 |
++--------------------------------------+--------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+PS C:\Users\dellpc\Downloads\getting-started-master\app> 
